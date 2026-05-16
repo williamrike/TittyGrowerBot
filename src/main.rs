@@ -10,7 +10,6 @@ use std::env::VarError;
 use std::net::SocketAddr;
 use futures::future::join_all;
 use reqwest::Url;
-use rust_i18n::i18n;
 use teloxide::dispatching::dialogue::InMemStorage;
 use teloxide::prelude::*;
 use teloxide::dptree::deps;
@@ -23,8 +22,6 @@ use crate::handlers::stats::StatsCommands;
 use crate::handlers::utils::locks::LockCallbackServiceFacade;
 
 const ENV_WEBHOOK_URL: &str = "WEBHOOK_URL";
-
-i18n!(fallback = "en");    // load localizations with default parameters
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -67,13 +64,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let bot = Bot::from_env();
     bot.delete_webhook().await?;
 
-    let set_my_commands_requests = _rust_i18n_available_locales()
-        .into_iter()
-        .map(|locale| commands::set_my_commands(&bot, locale, &app_config.command_toggles));
-    let set_my_commands_failed = join_all(set_my_commands_requests)
-        .await
-        .into_iter()
-        .any(|res| res.is_err());
+    // English-only commands (no locales)
+    let set_my_commands_failed = commands::set_my_commands(&bot, &app_config.command_toggles).await.is_err();
     if set_my_commands_failed {
         Err("couldn't set the bot's commands")?
     }
