@@ -7,9 +7,8 @@ license-file = "LICENSE"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# Telegram Bot framework and localization library
-teloxide = { git = "https://github.com/LasterAlex/teloxide/", default-features = false, features = ["macros", "webhooks-axum", "rustls", "ctrlc_handler"] }
-rust-i18n = "3.1.2"
+# Telegram Bot framework
+ teloxide = { git = "https://github.com/LasterAlex/teloxide/", default-features = false, features = ["macros", "webhooks-axum", "rustls", "ctrlc_handler"] }
 # Asynchronous runtime, web server, metrics
 tokio = { version =  "1.42.0", default-features = false, features = ["rt-multi-thread", "macros"] }
 axum = "0.7.9"

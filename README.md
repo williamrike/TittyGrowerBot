@@ -1,5 +1,5 @@
 [@TittyGrowerBot](https://t.me/TittyGrowerBot)
-============================================
+========================================
 
 A game bot for group chats that let its users grow their virtual "tits" every day for some random count of centimeters (including negative values) and compete with friends and other chat members.
 
@@ -24,7 +24,7 @@ _(compared with some competitors)_
 Features
 --------
 * true system random from the environment's chaos by usage of the `get_random()` syscall (`BCryptGenRandom` on Windows, or other alternatives on different OSes);
-* English and Russian translations;
+* English only (locales removed);
 * Prometheus-like metrics.
 
 Technical stuff
@@ -32,8 +32,8 @@ Technical stuff
 
 ### Requirements to run
 * PostgreSQL;
-* _\[optional]_ Docker (it makes the configuration a lot easier);
-* _\[for webhook mode]_ a frontal proxy server with TLS support ([nginx-proxy](https://github.com/nginx-proxy/nginx-proxy), for example).
+* _[optional]_ Docker (it makes the configuration a lot easier);
+* _[for webhook mode]_ a frontal proxy server with TLS support ([nginx-proxy](https://github.com/nginx-proxy/nginx-proxy), for example).
 
 ### How to rebuild .sqlx queries?
 _(to build the application without a running RDBMS)_
